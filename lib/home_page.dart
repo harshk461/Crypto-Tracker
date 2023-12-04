@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:crypto_tracker/coinModel.dart';
 import 'package:crypto_tracker/coin_card.dart';
+import 'package:crypto_tracker/login.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,7 +45,7 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     fetchCoin();
-    Timer.periodic(const Duration(seconds: 2), (timer) => fetchCoin());
+    // Timer.periodic(const Duration(seconds: 2), (timer) => fetchCoin());
     super.initState();
   }
 
@@ -62,6 +63,21 @@ class _HomeState extends State<Home> {
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              print("test");
+              Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => Loginpage()));
+            },
+            child: Text(
+              "Login",
+              style: TextStyle(
+                fontSize: 22,
+              ),
+            ),
+          ),
+        ],
       ),
       body: ListView.builder(
         itemCount: coinList.length,
